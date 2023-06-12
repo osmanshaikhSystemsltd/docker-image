@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/osmanshaikhSystemsltd/docker-image.git']])
+            }
+        }
+        stage('image build'){
+            steps{
+                sh 'docker build -t myimage/customimage'
+                echo '==listing images=='
+                sh 'docker images'
+            }
+        }
+        stage('image tag'){
+            steps{
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:latest'
+            }
+        }
+        stage('image tag'){
+            steps{
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:latest'
+            }
+        }
+        stage('image push'){
+            steps{
+                sh 'docker push osmanshaikh/customimage'
+            }
+        }
+    }
+}

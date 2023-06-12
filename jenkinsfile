@@ -12,7 +12,7 @@ pipeline {
                 sh 'docker images'
                 echo 'test'
                 sh 'docker tag myimage/customimage:latest osmanshaikh/customimage-prd:latest'
-                sh 'docker push osmanshaikh/customimage'
+                sh 'docker push osmanshaikh/customimage-prd'
             }
         }
         stage('image build for DEV'){
@@ -25,7 +25,7 @@ pipeline {
                 sh 'docker images'
                 echo 'test'
                 sh 'docker tag myimage/customimage:latest osmanshaikh/customimage-dev:latest'
-                sh 'docker push osmanshaikh/customimage'
+                sh 'docker push osmanshaikh/customimage-dev'
             }
         }
     }

@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    stages {
+    stages{
         stage('checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/osmanshaikhSystemsltd/docker-image.git']])
@@ -13,11 +13,6 @@ pipeline {
                 echo '==listing images=='
                 sh 'docker images'
                 echo 'test'
-            }
-        }
-        stage('image tag'){
-            steps{
-                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:latest'
             }
         }
         stage('image tag'){

@@ -9,7 +9,7 @@ pipeline {
         }
         stage('image build'){
             steps{
-                sh 'docker build -t myimage/customimage'
+                sh 'docker build -t myimage/customimage .'
                 echo '==listing images=='
                 sh 'docker images'
                 echo 'test'

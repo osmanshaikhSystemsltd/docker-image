@@ -2,22 +2,30 @@ pipeline {
     agent any
 
     stages{
-        stage('image build'){
+        stage('image build for PRD'){
+            when {
+                branch "main"
+            }
             steps{
                 sh 'docker build -t myimage/customimage .'
                 echo '==listing images=='
                 sh 'docker images'
                 echo 'test'
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:prd-$BUILD_NUMBER'
+                sh 'docker push osmanshaikh/customimage:prd-$BUILD_NUMBER'
             }
         }
-        stage('image tag'){
-            steps{
-                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:latest'
+        stage('image build for DEV'){
+            when {
+                branch "dev"
             }
-        }
-        stage('image push'){
             steps{
-                sh 'docker push osmanshaikh/customimage'
+                sh 'docker build -t myimage/customimage .'
+                echo '==listing images=='
+                sh 'docker images'
+                echo 'test'
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:dev-$BUILD_NUMBER'
+                sh 'docker push osmanshaikh/customimage:dev-$BUILD_NUMBER'
             }
         }
     }

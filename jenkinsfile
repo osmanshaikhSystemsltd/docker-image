@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages{
-        stage('clear WS'){
-            steps{
-                sh 'pwd'
-                echo "clearing workspace"
-                sh 'rm -rf .'
-            }
-        }
         stage('image build'){
             steps{
                 sh 'docker build -t myimage/customimage .'

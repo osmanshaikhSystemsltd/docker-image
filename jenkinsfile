@@ -3,9 +3,11 @@ pipeline {
 
     stages{
         stage('clear WS'){
-            sh 'pwd'
-            echo "clearing workspace"
-            sh 'rm -rf .'
+            steps{
+                sh 'pwd'
+                echo "clearing workspace"
+                sh 'rm -rf .'
+            }
         }
         stage('image build'){
             steps{

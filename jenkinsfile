@@ -12,6 +12,7 @@ pipeline {
                 sh 'docker build -t myimage/customimage'
                 echo '==listing images=='
                 sh 'docker images'
+                echo 'test'
             }
         }
         stage('image tag'){

@@ -11,8 +11,8 @@ pipeline {
                 echo '==listing images=='
                 sh 'docker images'
                 echo 'test'
-                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage-prd:latest'
-                sh 'docker push osmanshaikh/customimage-prd'
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:prd'
+                sh 'docker push osmanshaikh/customimage:prd'
             }
         }
         stage('image build for DEV'){
@@ -24,8 +24,8 @@ pipeline {
                 echo '==listing images=='
                 sh 'docker images'
                 echo 'test'
-                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage-dev:latest'
-                sh 'docker push osmanshaikh/customimage-dev'
+                sh 'docker tag myimage/customimage:latest osmanshaikh/customimage:dev'
+                sh 'docker push osmanshaikh/customimage:dev'
             }
         }
     }
